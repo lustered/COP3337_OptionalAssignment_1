@@ -1,25 +1,9 @@
-// What is a CD?:
-// Certificates of deposit are a secure form of time deposit, where money must stay in the bank for a certain 
-// length of time to earn a promised return. A CD, also called a “share certificate” at
-// credit unions, almost always earns more interest than a regular savings account.
-
-// Compute the accumulated value (principal plus interest earned) 
-// for any number of such CD's at yearly intervals
-
-/*
-5000 5 8.25 quarterly
-12000 10 10.80 daily
-2000 5 7.30 quarterly
-10000 3 5.55 monthly
-2000 1 4.50 daily
-5000 10 9.15 monthly
-*/
 import java.lang.Math;
 
 public class CertificateOfDeposit {
     private double principal;
-    private int maturity;
     private double interestRate;
+    private int maturity;
     private String compoundingMode;
 
     public CertificateOfDeposit(double principal, int maturity, double interestRate, String compoundingMode) {
@@ -27,6 +11,13 @@ public class CertificateOfDeposit {
         this.maturity = maturity;
         this.interestRate = interestRate;
         this.compoundingMode = compoundingMode;
+    }
+
+    public CertificateOfDeposit(String[] accountInfo) {
+        this.principal = Double.parseDouble(accountInfo[0]);
+        this.maturity = Integer.parseInt(accountInfo[1]);
+        this.interestRate = Double.parseDouble(accountInfo[2]);
+        this.compoundingMode = accountInfo[3];
     }
 
     public CertificateOfDeposit() {
@@ -70,18 +61,14 @@ public class CertificateOfDeposit {
             default:
                 System.out.println("LOG::Check for typo in the Compounding Mode");
         }
-
         double ret = principal * Math.pow((1 + (interestRate / compoundInterest)), (compoundInterest * elapsedTime));
         return ret;
     }
 
     public String toString() {
-
-        return "Certificate of Deposit [principalAmount = " + principal + ", initialRate = " + interestRate
-                + ", maturity = " + maturity
-
-                + ", compoundValue = " + compoundingMode + "]";
-
+        return "[Certificate of Deposit]::[Principal Amount = " + principal + ", Initial Rate = " + interestRate
+                + ", Maturity = " + maturity + ", Compound Value = " + compoundingMode + ", Computed Balance = "
+                + computeValues(10) + "]";
     }
 
 }

@@ -2,36 +2,40 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class testing_class {
 
     public static void main(String[] args) {
 
         /*
-         * arrlist to store each account each account is stored in an individual array
+         * Arrlist to store each account each account is stored in an individual array
          * in the ArrayList to access each account:
-         * arrlist.get(accountIndex)[accountItems]
+         * ArrayList.get(accountIndex)[accountItems]
          */
+
+        // ArrayList to store accounts from text file
         ArrayList<String[]> accounts = new ArrayList<String[]>();
+        // Call method to store accounts
         getAccountsFromFile(accounts);
 
+        // Extract each account
         String[] account1 = accounts.get(0);
         String[] account2 = accounts.get(1);
+        String[] account3 = accounts.get(2);
 
         // Creating CD skeletons
-        CertificateOfDeposit account_1 = new CertificateOfDeposit(Double.parseDouble(account1[0]),
-                Integer.parseInt(account1[1]), Double.parseDouble(account1[2]), account1[3]);
+        CertificateOfDeposit account_1 = new CertificateOfDeposit(account1);
+        CertificateOfDeposit account_2 = new CertificateOfDeposit(account2);
+        CertificateOfDeposit account_3 = new CertificateOfDeposit(account3);
 
-        CertificateOfDeposit account_2 = new CertificateOfDeposit(Double.parseDouble(account2[0]),
-                Integer.parseInt(account2[1]), Double.parseDouble(account2[2]), account2[3]);
-
-        // Bank CD Account List 1
+        // Add accounts
         CertificateOfDepositList cd1 = new CertificateOfDepositList();
         cd1.addAccountToList(account_1);
         cd1.addAccountToList(account_2);
+        cd1.addAccountToList(account_3);
         cd1.accountReport();
 
+        // Print testing
         // System.out.println(account.computeValues(10));
         // System.out.println(account.getPrincipal());
         // System.out.println(accounts.get(4)[3]);
