@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class CertificateOfDepositList {
     private ArrayList<CertificateOfDeposit> listOfCDs;
-    private int totalAccountsCreated = 0;
+    public int totalAccountsCreated = 0;
 
     // constructor
     public CertificateOfDepositList() {
@@ -17,7 +17,7 @@ public class CertificateOfDepositList {
     }
 
     public void accountReport() {
-        System.out.println("[LOG]:: Total Accounts: " + totalAccountsCreated);
+        System.out.println("\n[LOG]:: Total Accounts: " + totalAccountsCreated);
         System.out.println("\n\t\t\t\t\t\t[:: Certificate of Deposit List ::]");
         for (CertificateOfDeposit cd : listOfCDs)
             System.out.println(cd);

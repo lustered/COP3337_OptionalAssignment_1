@@ -76,11 +76,11 @@ public class CertificateOfDeposit {
     }
 
     public String toString() {
-        // Insert 130 '-'
-        String divider = new String(new char[130]).replace("\0", "-");
-        return divider + "\n[Principal Amount = " + principal + " | Initial Interest Rate = " + interestRate
-                + " | Maturity = " + maturity + " | Compound Value = " + compoundingMode.toUpperCase()
-                + " | Computed Value = $" + computeValues(3) + " ]";
+        // Insert 140 '-'
+        String divider = new String(new char[140]).replace("\0", "-");
+        return divider + "\n| Principal Amount = $" + principal + " | Initial Interest Rate = " + interestRate
+                + "% | Maturity = " + maturity + " | Compound Value = " + compoundingMode.toUpperCase()
+                + " | Accumulated Interest = $" + computeValues(3) + " |";
     }
 
 }

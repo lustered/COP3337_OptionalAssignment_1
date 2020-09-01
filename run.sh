@@ -1,2 +1,2 @@
 #!/usr/bin/fish
-javac *.java && javar testing_class
+javac *.java && javar TestingClass
