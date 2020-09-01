@@ -1,15 +1,17 @@
 import java.lang.Math;
+import java.text.DecimalFormat;
 
 public class CertificateOfDeposit {
     private double principal;
     private double interestRate;
     private int maturity;
     private String compoundingMode;
+    private int elapsedTime;
 
-    public CertificateOfDeposit(double principal, int maturity, double interestRate, String compoundingMode) {
+    public CertificateOfDeposit(double principal, double interestRate, int maturity, String compoundingMode) {
         this.principal = principal;
-        this.maturity = maturity;
         this.interestRate = interestRate;
+        this.maturity = maturity;
         this.compoundingMode = compoundingMode;
     }
 
@@ -44,31 +46,41 @@ public class CertificateOfDeposit {
         return interestRate;
     }
 
+    public int getElapsedTime() {
+        return elapsedTime;
+    }
+
     // Elapsed time in years | not maturity
-    public double computeValues(double elapsedTime) {
+    public String computeValues(int elapsedTime) {
+        this.elapsedTime = elapsedTime;
         // Number of times compounded per year
         double compoundInterest = 0.0;
         switch (this.compoundingMode) {
             case "daily":
-                compoundInterest = 365;
+                compoundInterest = 365.0;
                 break;
             case "monthly":
-                compoundInterest = 12;
+                compoundInterest = 12.0;
                 break;
             case "quarterly":
-                compoundInterest = 4;
+                compoundInterest = 4.0;
                 break;
             default:
                 System.out.println("LOG::Check for typo in the Compounding Mode");
         }
-        double ret = principal * Math.pow((1 + (interestRate / compoundInterest)), (compoundInterest * elapsedTime));
-        return ret;
+        double rate = interestRate / 100.0;
+        double ret = principal * Math.pow((1.0 + (rate / compoundInterest)), (compoundInterest * (double) elapsedTime));
+
+        DecimalFormat df = new DecimalFormat("###.##");
+        return String.valueOf(df.format(ret));
     }
 
     public String toString() {
-        return "[Certificate of Deposit]::[Principal Amount = " + principal + ", Initial Rate = " + interestRate
-                + ", Maturity = " + maturity + ", Compound Value = " + compoundingMode + ", Computed Balance = "
-                + computeValues(10) + "]";
+        // Insert 130 '-'
+        String divider = new String(new char[130]).replace("\0", "-");
+        return divider + "\n[Principal Amount = " + principal + " | Initial Interest Rate = " + interestRate
+                + " | Maturity = " + maturity + " | Compound Value = " + compoundingMode.toUpperCase()
+                + " | Computed Value = $" + computeValues(3) + " ]";
     }
 
 }
