@@ -22,6 +22,7 @@ public class TestingClass {
         System.out.println("\n[::Options::]");
         System.out.println("\t[::1-Load from file::]");
         System.out.println("\t[::2-Use default file::]\n\t\t");
+        System.out.print("\tChoice:: ");
         userOption = Integer.parseInt(scan.next());
 
         // Assuming there are no wrong filenames
